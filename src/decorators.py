@@ -7,11 +7,11 @@ def log(filename=None):
             try:
                 result = func(*args, **kwargs)
                 if filename is None:
-                    print("OK\n")
+                    print(f"{func.__name__} ok\n")
                     return result
                 else:
                     with open(filename, "a+") as file:
-                        file.write("OK\n")
+                        file.write(f"{func.__name__} ok\n")
                     return result
             except Exception as e:
                 if filename is None:
@@ -23,3 +23,9 @@ def log(filename=None):
         return wrapper
 
     return decorator
+
+@log()
+def sqr_func(x):
+    return x/x
+
+sqr_func(0)
