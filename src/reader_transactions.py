@@ -4,16 +4,15 @@ import pandas as pd
 
 def get_transaction(path):
     """
-    Функция чтения файла с транзакциями
+    The function of reading a file with transactions
+    param 1: path to file
+    return: list of dict
     """
     if "xlsx" in path:
         trans_excel = pd.read_excel(path)
-        return trans_excel
+        return trans_excel.to_dict(orient='records')
     elif "csv" in path:
         trans_csv = pd.read_csv(path)
-        return trans_csv
+        return trans_csv.to_dict(orient='records')
     else:
         raise ValueError("Неверное расширение или файл отсутствует")
-
-
-print(get_transaction(r"C:\My_study\Seropyan_DZ\transactions.csv"))

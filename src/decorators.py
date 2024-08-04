@@ -1,7 +1,5 @@
 def log(filename=None):
-    """Декоратор для логирования вызовов функций.
-    Параметры:
-    filename (str): Имя файла для записи логов. Если None, логи выводятся в консоль.
+    """A decorator for logging function calls
     """
 
     def decorator(func):
