@@ -1,9 +1,11 @@
 import logging
 
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    filename=r'C:\My_study\Seropyan_DZ\logs\masks.log',  # Запись логов в файл
-                    filemode='w')  # Перезапись файла при каждом запуске
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    filename=r"C:\My_study\Seropyan_DZ\logs\masks.log",  # Запись логов в файл
+    filemode="w",
+)  # Перезапись файла при каждом запуске
 logger = logging.getLogger("masks")
 
 

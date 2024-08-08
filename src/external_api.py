@@ -16,14 +16,8 @@ def transaction_amount(transaction):
         url = "https://api.apilayer.com/exchangerates_data/convert"
         amount = str(transaction["operationAmount"]["amount"])
         from_ = transaction["operationAmount"]["currency"]["code"]
-        payload = {
-            "amount": amount,
-            "from": from_,
-            "to": "RUB"
-        }
-        headers = {
-            "apikey": token
-        }
+        payload = {"amount": amount, "from": from_, "to": "RUB"}
+        headers = {"apikey": token}
 
         response = requests.get(url, headers=headers, params=payload)
 

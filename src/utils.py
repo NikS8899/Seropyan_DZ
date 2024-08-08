@@ -4,10 +4,12 @@ import os
 import json
 import logging
 
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    filename=r'C:\My_study\Seropyan_DZ\logs\utils.log',  # Запись логов в файл
-                    filemode='w')  # Перезапись файла при каждом запуске
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    filename=r"C:\My_study\Seropyan_DZ\logs\utils.log",  # Запись логов в файл
+    filemode="w",
+)  # Перезапись файла при каждом запуске
 logger = logging.getLogger("utils")
 
 
@@ -20,7 +22,7 @@ def transactions(path=PATH_TO_FILE) -> list[dict]:
     """
     try:
         logger.info("Запуск функции вывода списка транзакций")
-        with open(path, encoding='utf-8') as f:
+        with open(path, encoding="utf-8") as f:
             data = json.load(f)
             return data
     except Exception:
