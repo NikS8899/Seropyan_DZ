@@ -24,7 +24,7 @@ git clone https://github.com/NikS8899/Seropyan_DZ.git
    + decorators.py - содержит декоратор log предназначенный для логирования функций
    + utils.py - содержит функцию возвращающую список транзакций
    + reader_transactions.py - содержит функцию чтения файла с транзакциями
-   + 
+   + find_description - содержит две функции: find_str_description для поиска и вывода операций по строке, counter_of_description для подсчёта категорий операций в списке транзакций 
 ## Тестирование
 
 ### Файл с результатами тестирования находится в директории htmlcov/index.html

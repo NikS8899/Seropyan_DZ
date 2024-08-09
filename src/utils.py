@@ -1,5 +1,5 @@
 # coding: Windows-1251
-
+import pandas as pd
 import os
 import json
 import logging
@@ -13,21 +13,32 @@ logging.basicConfig(
 logger = logging.getLogger("utils")
 
 
-PATH_TO_FILE = os.path.join(os.path.dirname(os.getcwd()), "data", "operations.json")
+JSON_PATH_TO_FILE = os.path.join(os.path.dirname(os.getcwd()), "data", "operations.json")
+EXCEL_PATH_TO_FILE = os.path.join(os.path.dirname(os.getcwd()), "data", "transaction_excel.xlsx")
+CSV_PATH_TO_FILE = os.path.join(os.path.dirname(os.getcwd()), "data", "transaction.csv")
 
-
-def transactions(path=PATH_TO_FILE) -> list[dict]:
+def get_transactions(path=JSON_PATH_TO_FILE) -> list[dict]:
     """
     Функция возвращающая список транзакций
     """
     try:
-        logger.info("Запуск функции вывода списка транзакций")
-        with open(path, encoding="utf-8") as f:
-            data = json.load(f)
-            return data
+        if "xlsx" in path:
+            logger.info("Запуск функции вывода списка транзакций из excel файла")
+            trans_excel = pd.read_excel(path)
+            return trans_excel.to_dict(orient='records')
+        elif "csv" in path:
+            logger.info("Запуск функции вывода списка транзакций из csv файла")
+            trans_csv = pd.read_csv(path, delimiter=";")
+            return trans_csv.to_dict(orient='records')
+        elif "json" in path:
+            logger.info("Запуск функции вывода списка транзакций из json файла")
+            with open(path, encoding="utf-8") as f:
+                data = json.load(f)
+                return data
     except Exception:
         logger.error(f"Ошибка файла по пути: {path}")
         return []
 
 
-print(transactions())
+if __name__ == "__main__":
+    print(get_transactions())
