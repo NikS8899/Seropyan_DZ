@@ -1,4 +1,4 @@
-# coding: Windows-1251
+# coding: utf-8
 import pandas as pd
 import os
 import json
@@ -7,9 +7,9 @@ import logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    filename=r"C:\My_study\Seropyan_DZ\logs\utils.log",  # Запись логов в файл
+    filename=r"C:\My_study\Seropyan_DZ\logs\utils.log",  # Р—Р°РїРёСЃСЊ Р»РѕРіРѕРІ РІ С„Р°Р№Р»
     filemode="w",
-)  # Перезапись файла при каждом запуске
+)  # РџРµСЂРµР·Р°РїРёСЃСЊ С„Р°Р№Р»Р° РїСЂРё РєР°Р¶РґРѕРј Р·Р°РїСѓСЃРєРµ
 logger = logging.getLogger("utils")
 
 
@@ -19,24 +19,24 @@ CSV_PATH_TO_FILE = os.path.join(os.path.dirname(os.getcwd()), "data", "transacti
 
 def get_transactions(path=JSON_PATH_TO_FILE) -> list[dict]:
     """
-    Функция возвращающая список транзакций
+    Р¤СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°СЋС‰Р°СЏ СЃРїРёСЃРѕРє С‚СЂР°РЅР·Р°РєС†РёР№
     """
     try:
         if "xlsx" in path:
-            logger.info("Запуск функции вывода списка транзакций из excel файла")
+            logger.info("Р—Р°РїСѓСЃРє С„СѓРЅРєС†РёРё РІС‹РІРѕРґР° СЃРїРёСЃРєР° С‚СЂР°РЅР·Р°РєС†РёР№ РёР· excel С„Р°Р№Р»Р°")
             trans_excel = pd.read_excel(path)
             return trans_excel.to_dict(orient='records')
         elif "csv" in path:
-            logger.info("Запуск функции вывода списка транзакций из csv файла")
+            logger.info("Р—Р°РїСѓСЃРє С„СѓРЅРєС†РёРё РІС‹РІРѕРґР° СЃРїРёСЃРєР° С‚СЂР°РЅР·Р°РєС†РёР№ РёР· csv С„Р°Р№Р»Р°")
             trans_csv = pd.read_csv(path, delimiter=";")
             return trans_csv.to_dict(orient='records')
         elif "json" in path:
-            logger.info("Запуск функции вывода списка транзакций из json файла")
+            logger.info("Р—Р°РїСѓСЃРє С„СѓРЅРєС†РёРё РІС‹РІРѕРґР° СЃРїРёСЃРєР° С‚СЂР°РЅР·Р°РєС†РёР№ РёР· json С„Р°Р№Р»Р°")
             with open(path, encoding="utf-8") as f:
                 data = json.load(f)
                 return data
     except Exception:
-        logger.error(f"Ошибка файла по пути: {path}")
+        logger.error(f"РћС€РёР±РєР° С„Р°Р№Р»Р° РїРѕ РїСѓС‚Рё: {path}")
         return []
 
 
